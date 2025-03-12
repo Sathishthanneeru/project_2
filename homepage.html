@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background: #333;
+      color: white;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+    }
+
+    .nav-links li {
+      margin: 0 15px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+    }
+
+    .sign-in-btn {
+      background: #ff5733;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .sign-in-btn:hover {
+      background: #ff2e00;
+    }
+
+    .bar {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .bar span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #333;
+        padding: 10px 0;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        text-align: center;
+        margin: 10px 0;
+      }
+
+      .bar {
+        display: flex;
+      }
+    }
+    .links {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-content: center;
+      justify-content: center;
+      padding: 20px;
+      list-style: none;
+      font-size: 20px;
+    }
+    .links a {
+      text-decoration: none;
+    }
+
+    .search-container {
+      margin: 20px auto;
+      width: 300px;
+      display: flex;
+      align-items: center;
+      background: white;
+      border-radius: 8px;
+      padding: 5px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #search-input {
+      width: 100%;
+      padding: 8px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+
+    #search-btn {
+      background: #3b160d;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #search-btn:hover {
+      background: #e2593a;
+    }
+    .search-container {
+      width: 90%;
+    }
+    .product-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product-description {
+      margin: 10px 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .add-to-cart-btn {
+      background: #ff5733;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .add-to-cart-btn:hover {
+      background: #ff2e00;
+    }
+    .cart-btn {
+      background: #3b160d;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .cart-btn:hover {
+      background: #e2593a;
+    }
+
+    .cart-btn span {
+      margin-left: 8px;
+      background: #ff5733;
+      border-radius: 50%;
+      padding: 3px 8px;
+      font-size: 12px;
+    }
+  </style>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">TRIPADVISOR</div>
+      <ul class="nav-links">
+        <li><a href="#">Discover</a></li>
+        <li><a href="#">trips</a></li>
+        <li><a href="#">Review</a></li>
+        <li><a href="#">More</a></li>
+        <li>
+          <button class="cart-btn">Cart <span id="cart-count">0</span></button>
+        </li>
+        <li><button class="sign-in-btn">Log Out</button></li>
+      </ul>
+      <div class="bar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+    <ul class="links">
+      <li><a href="">Hotels</a></li>
+      <li><a href="">Things to Do</a></li>
+      <li><a href="">Restaurants</a></li>
+      <li><a href="">Flights</a></li>
+      <li><a href="">Vocational Rentals</a></li>
+    </ul>
+    <div class="search-container">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search here for trip....."
+      />
+      <button id="search-btn">🔍</button>
+    </div>
+    <div class="product-container">
+      <!-- Product Card 1 -->
+      <div class="product-card">
+        <img
+          src="https://i0.wp.com/oneday.travel/wp-content/uploads/one-day-hyderabad-local-sightseeing-tour-package-private-cab-header.jpg?fit=1920%2C1280&ssl=1"
+          alt="Product 1"
+          class="product-image"
+        />
+        <p class="product-description">
+          Beautiful beach resort with stunning views.
+        </p>
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      <!-- Product Card 2 -->
+      <div class="product-card">
+        <img
+          src="https://www.hyderabadtourism.travel/images/v2/header-places/tiny-j/golconda-fort-hyderabad-tourism-attraction-entryfee-timings-reviews-header.jpeg"
+          alt="Product 2"
+          class="product-image"
+        />
+        <p class="product-description">
+          Luxury hotel with world-class amenities.
+        </p>
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      <!-- Product Card 3 -->
+      <div class="product-card">
+        <img
+          src="https://i0.wp.com/weekendyaari.in/wp-content/uploads/2024/09/weekend-yaari-ramoji-film-city-1.webp?fit=1921%2C1081&ssl=1"
+          alt="Product 3"
+          class="product-image"
+        />
+        <p class="product-description">
+          Cozy vacation home in a quiet neighborhood.
+        </p>
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      <!-- Product Card 4 -->
+      <div class="product-card">
+        <img
+          src="https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/2018/05/02180148/jagannath2.jpg"
+          alt="Product 4"
+          class="product-image"
+        />
+        <p class="product-description">
+          Gourmet dining experience with a variety of dishes.
+        </p>
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+    <script>
+      let cartCount = 0;
+      const cartCountElement = document.getElementById("cart-count");
+      const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+    
+      addToCartButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          cartCount++;
+          cartCountElement.textContent = cartCount;
+        });
+      });
+    
+      // Mobile menu toggle
+      const bar = document.querySelector(".bar");
+      const navLinks = document.querySelector(".nav-links");
+    
+      bar.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+      });
+    </script>
+    
+  </body>
+</html>
