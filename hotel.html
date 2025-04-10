@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Room Booking</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    .navbar {
+      background-color: #2c3e50;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-icon {
+      cursor: pointer;
+      font-size: 1.2rem;
+      position: relative;
+    }
+
+    .room-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 2rem;
+      justify-content: center;
+    }
+
+    .room-card {
+      background: white;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      width: 220px;
+      text-align: center;
+    }
+
+    .room-card img {
+      width: 100%;
+      height: 200px;
+      border-radius: 8px;
+    }
+
+    .room-card button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .cart {
+      display: none;
+      background-color: #fff;
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      width: 300px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+    .remove-btn {
+      margin-left: 10px;
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .home-btn {
+      background-color: #b0eab2;
+      border: none;
+      border-radius: 12px;
+      padding: 5px 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      /* margin-right: 20px; */
+    }
+
+    .home-btn a {
+      color: rgb(207, 113, 113);
+      text-decoration: none;
+      font-weight: bold;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 16px;
+    }
+
+    .home-btn:hover {
+      background-color: #45a049;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+  </style>
+  <body>
+    <nav class="navbar">
+      <h1>Hotels and cottages</h1>
+      <div class="cart-icon" onclick="toggleCart()">
+        🛒 <span id="cart-count">0</span>
+      </div>
+      <div>
+        <a href="./homepage.html" class="home-btn">HOME</a>
+      </div>
+    </nav>
+
+    <div class="room-container">
+      <div class="room-card">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/56dfd5cc9f7266ed7f04b64d/1585743760384-7ERBTPJ5KET5FC9485Z9/image-asset.jpeg"
+          alt="Room Image"
+        />
+        <h2>NON AC - Deluxe Room</h2>
+        <p>Price: ₹1500</p>
+        <p>Location: Charminar</p>
+        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+      </div>
+      <div class="room-card">
+        <img
+          src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/494845956.jpg?k=cc48a846ae3038d6b0cbd731e7eaf2c2fcb7db12dbf53d370cb5e3fb06fd2e7a&o=&hp=1"
+          alt="Room Image"
+        />
+        <h2>AC - Deluxe Room</h2>
+        <p>Price: ₹1800</p>
+        <p>Location: Golconda</p>
+        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+      </div>
+      <div class="room-card">
+        <img
+          src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/490190593.jpg?k=490f762e14bfdc24b53a4fa2576523b51481b7208d3af36722f3337ecb470221&o=&hp=1"
+          alt="Room Image"
+        />
+        <h2>Premium AC - Deluxe Room</h2>
+        <p>Price: ₹2200</p>
+        <p>Location: Ramoji flim city</p>
+        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+      </div>
+      <div class="room-card">
+        <img
+          src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/445705956.jpg?k=c237d405d875a3edf7755f9426d3c4092d857d88bb37efda18fd092b880b8237&o=&hp=1"
+          alt="Room Image"
+        />
+        <h2>AC - Deluxe Room</h2>
+        <p>Price: ₹1800</p>
+        <p>Location: Banjara Hills</p>
+        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+      </div>
+      <div class="room-card">
+        <img
+          src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/483507700.jpg?k=e0f5d36869b8664a7de0b889526bb4ab3f86ea1911d8c945f45b6b48de35b866&o=&hp=1"
+          alt="Room Image"
+        />
+        <h2>NON AC - Deluxe Room</h2>
+        <p>Price: ₹1200</p>
+        <p>Location: Hussain Sagar</p>
+        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+      </div>
+      <div class="room-card">
+        <img
+          src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/487954267.jpg?k=3422da8674b1a73eef9ef24edca5e57997dcb312d45b177d814399f032855da9&o=&hp=1"
+          alt="Room Image"
+        />
+        <h2>NON AC - Room</h2>
+        <p>Price: ₹1000</p>
+        <p>Location: ORR</p>
+        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+      </div>
+      <div class="room-card">
+        <img
+          src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/515205143.jpg?k=94e12cd867bfb1a4a60e510160e808b518201cafb8ef3f7f4f336901b71387c9&o=&hp=1"
+          alt="Room Image"
+        />
+        <h2>DoubleCart AC-Room</h2>
+        <p>Price: ₹2800</p>
+        <p>Location: Hitech city</p>
+        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+      </div>
+      <div class="room-card">
+        <img
+          src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/515205255.jpg?k=7980b96f5fd621b5f1b3e329bd47c23033181bc6fdc3d847e1e495828013d354&o=&hp=1"
+          alt="Room Image"
+        />
+        <h2>Premium AC - Room</h2>
+        <p>Price: ₹2400</p>
+        <p>Location: Kukatpalli</p>
+        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+      </div>
+      <div class="room-card">
+        <img
+          src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/490890222.jpg?k=57d79b06a95340167899645fb2a02f3b147b3bff904091ce769d5b91ae4a77f2&o=&hp=1"
+          alt="Room Image"
+        />
+        <h2>DoubleCart AC-Room</h2>
+        <p>Price: ₹2600</p>
+        <p>Location: KBHP</p>
+        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+      </div>
+      <div class="room-card">
+        <img
+          src="https://media.mahakumbh.in/media/2024/06/13155504/Our-Cottages_compressed_Page_05_Image_0001.webp"
+          alt="Room Image"
+        />
+        <h2>Cottage</h2>
+        <p>Price: ₹2500</p>
+        <p>Location: ameerpet</p>
+        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+      </div>
+      <div class="room-card">
+        <img
+          src="https://images.trvl-media.com/lodging/31000000/30370000/30360900/30360892/d33eb7c0.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill"
+          alt="Room Image"
+        />
+        <h2>Cottage</h2>
+        <p>Price: ₹2900</p>
+        <p>Location: Madhapur</p>
+        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+      </div>
+      <div class="room-card">
+        <img
+          src="https://www.rishikulkumbhcottages.com/cottages/images/deluxe1.jpg"
+          alt="Room Image"
+        />
+        <h2>Cottage</h2>
+        <p>Price: ₹2500</p>
+        <p>Location: JNTU</p>
+        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="cart" id="cart">
+      <h3>Your Cart</h3>
+      <ul id="cart-items"></ul>
+    </div>
+    <script>
+      let cart = [];
+
+      function addToCart(name, price) {
+        cart.push({ name, price });
+        updateCartCount();
+        updateCartDisplay();
+      }
+
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartCount();
+        updateCartDisplay();
+      }
+
+      function updateCartCount() {
+        document.getElementById("cart-count").textContent = cart.length;
+      }
+
+      function updateCartDisplay() {
+        const cartItems = document.getElementById("cart-items");
+        cartItems.innerHTML = "";
+        cart.forEach((item, index) => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+      ${item.name} - ₹${item.price}
+      <button onclick="removeFromCart(${index})" class="remove-btn">Remove</button>
+    `;
+          cartItems.appendChild(li);
+        });
+      }
+
+      function toggleCart() {
+        const cartDiv = document.getElementById("cart");
+        cartDiv.style.display =
+          cartDiv.style.display === "block" ? "none" : "block";
+      }
+    </script>
+  </body>
+</html>

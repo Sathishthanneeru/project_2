@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Template</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: #f8f9fa;
+      }
+      nav {
+        background-color: #333;
+        padding: 1rem;
+        text-align: center;
+      }
+      nav button {
+        padding: 10px 20px;
+        background-color: #ff6f61;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      .card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+      }
+      .card h3 {
+        margin-bottom: 15px;
+      }
+      .card button {
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .menu-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+      .menu-content {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 500px;
+        text-align: left;
+      }
+      .menu-content h2 {
+        margin-top: 0;
+      }
+      .menu-content ul {
+        list-style: none;
+        padding: 0;
+      }
+      .menu-content li {
+        margin: 10px 0;
+      }
+      .close-btn {
+        margin-top: 20px;
+        background: #dc3545;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <button onclick="goHome()"><a href="./homepage.html">Home</a></button>
+    </nav>
+
+    <div class="container" id="restaurant-list">
+      
+    </div>
+
+    <div class="menu-modal" id="menuModal">
+      <div class="menu-content">
+        <h2 id="restaurantName">Menu</h2>
+        <ul id="menuItems"></ul>
+        <button class="close-btn" onclick="closeMenu()">Close</button>
+      </div>
+    </div>
+
+    <script>
+      const restaurants = [
+        {
+          name: "The Spice Route",
+          image:
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/30/54/b2/bidri-ambience.jpg?w=600&h=-1&s=1",
+          menu: [
+            { item: "Chicken Biryani", price: "120" },
+            { item: "Paneer Tikka", price: "180" },
+            { item: "Paneer masala", price: "200" },
+          ],
+        },
+        {
+          name: "Ocean Grill Restaurant",
+          image:
+            "https://b.zmtcdn.com/data/pictures/2/18259462/668c032420233b5e401d9ba5b9f82bc8.jpg",
+          menu: [
+            { item: "Grilled Salmon", price: "150" },
+            { item: "Prawn Curry", price: "140" },
+          ],
+        },
+        {
+          name: "Veggie Delight Restaurant",
+          image:
+            "https://b.zmtcdn.com/data/pictures/6/20956166/233f7ee409a56724377e14b933e783a3_featured_v2.jpg",
+          menu: [
+            { item: "Veggie Wrap", price: "170" },
+            { item: "Tofu Bowl", price: "190" },
+          ],
+        },
+        {
+          name: "Tandoori Flames Restaurant ",
+          image:
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/d0/db/dc/tandoori-flame.jpg?w=900&h=500&s=1",
+          menu: [
+            { item: "Tandoori Chicken", price: "200" },
+            { item: "Garlic Naan", price: "35" },
+          ],
+        },
+        {
+          name: "Sushi Restaurant",
+          image:
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/d8/54/fb/our-new-and-expanded.jpg?w=900&h=500&s=1",
+          menu: [
+            { item: "Chicken Roll", price: "110" },
+            { item: "Tuna roll", price: "130" },
+          ],
+        },
+        {
+          name: "Burger Hub",
+          image:
+            "https://content.jdmagicbox.com/v2/comp/sirsa-haryana/s5/9999p1666.1666.230116203938.b3s5/catalogue/burger-hut-sirsa-ho-sirsa-haryana-fast-food-na5o9mfkw8.jpg",
+          menu: [
+            { item: "Cheese Burger", price: "170" },
+            { item: "Fries", price: "300" },
+          ],
+        },
+        {
+          name: "Pasta Point",
+          image:
+            "https://b.zmtcdn.com/data/pictures/9/20843359/cfd3e00068b01174ea1370d8f5af6430_featured_v2.jpg",
+          menu: [
+            { item: "past", price: "130" },
+            { item: "Garlic Bread pasta", price: "140" },
+          ],
+        },
+        {
+          name: "Curry House",
+          image:
+            "https://content.jdmagicbox.com/comp/gurgaon/h4/011pxx11.xx11.190606132701.n2h4/catalogue/the-curry-house-gurgaon-restaurants-0qwoc3fats.jpg",
+          menu: [
+            { item: "Butter Chicken", price: "120" },
+            { item: "Roti", price: "22" },
+          ],
+        },
+        {
+          name: "Rock Restaurant",
+          image:
+            "https://assets.architecturaldigest.in/photos/6627772d13a573ed987196ba/16:9/w_1616,h_909,c_limit/Untitled%20design%20(5).jpg",
+          menu: [
+            { item: "dhum biryani", price: "140" },
+            { item: "cofee", price: "60" },
+          ],
+        },
+        {
+          name: "Pizza Palace",
+          image:
+            "https://pizzahouse.com/wp-content/uploads/pizza-house-ann-arbor-seating.jpg",
+          menu: [
+            { item: "Margherita Pizza", price: "190" },
+            { item: "Pepper Pizza", price: "110" },
+          ],
+        },
+      ];
+
+      const listContainer = document.getElementById("restaurant-list");
+      const menuModal = document.getElementById("menuModal");
+      const menuItems = document.getElementById("menuItems");
+      const restaurantName = document.getElementById("restaurantName");
+
+      function goHome() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function showMenu(index) {
+        const rest = restaurants[index];
+        restaurantName.textContent = rest.name + " - Menu";
+        menuItems.innerHTML = rest.menu
+          .map((item) => `<li>${item.item} - ${item.price}</li>`)
+          .join("");
+        menuModal.style.display = "flex";
+      }
+
+      function closeMenu() {
+        menuModal.style.display = "none";
+      }
+
+      function renderRestaurants() {
+        listContainer.innerHTML = ""; // Clear existing content
+        restaurants.forEach((rest, i) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+      <img src="${rest.image}" alt="${rest.name}" style="width:100%; height:180px; object-fit:cover; border-radius:8px;">
+      <h3>${rest.name}</h3>
+      <button onclick="showMenu(${i})">View Menu</button>
+    `;
+          listContainer.appendChild(card);
+        });
+      }
+
+      renderRestaurants();
+    </script>
+  </body>
+</html>

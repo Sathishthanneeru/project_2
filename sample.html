@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <!-- Sign In Form -->
+      
       <div id="signin-container" class="form-container">
         <h2>Sign In</h2>
         <form id="loginForm">
@@ -28,7 +28,7 @@
         </p>
       </div>
 
-      <!-- Sign Up Form (Initially Hidden) -->
+      
       <div id="signup-container" class="form-container hidden">
         <h2>Create an Account</h2>
         <form id="signupForm">
@@ -126,4 +126,139 @@
       }
     </style>
   </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    footer {
+    background: #2c3e50;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 10px;
+    min-width: 200px;
+}
+
+.footer-section h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.footer-section p, .footer-section ul {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin: 5px;
+    font-size: 20px;
+    color: white;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #1abc9c;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+  </style>
+</head>
+<body>
+  <footer>
+    <div class="footer-container">
+        <div class="footer-section about">
+            <h2>About Us</h2>
+            <p>Discover the best destinations, hotels, and restaurants with our platform.</p>
+        </div>
+        <div class="footer-section links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Destinations</a></li>
+                <li><a href="#">Hotels</a></li>
+                <li><a href="#">Restaurants</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-section contact">
+            <h2>Contact</h2>
+            <p>Email: support@tripadvisorclone.com</p>
+            <p>Phone: +91 98765 43210</p>
+        </div>
+        <div class="footer-section social">
+            <h2>Follow Us</h2>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <p class="footer-bottom">© 2025 TripAdvisor Clone. All Rights Reserved.</p>
+  </footer>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    console.log("Footer Loaded Successfully!");
+});
+
+  </script>
+  
+</body>
 </html>
+

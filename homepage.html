@@ -199,6 +199,114 @@
       padding: 3px 8px;
       font-size: 12px;
     }
+    .cart-container {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      width: 300px;
+      background: white;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      border-radius: 8px;
+      display: none;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .cart-item button {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px;
+      cursor: pointer;
+    }
+    .location-btn {
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .location-btn:hover {
+      background-color: #ff5252;
+    }
+    .footer {
+      background-color: #1c1c1c;
+      color: #ffffff;
+      padding: 40px 20px 20px;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer-section {
+      flex: 1 1 250px;
+      margin: 15px;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      border-bottom: 2px solid #ffcc00;
+      padding-bottom: 5px;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: #cccccc;
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+
+    .footer-section a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #333333;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .social-icons img {
+      width: 24px;
+      height: 24px;
+      filter: brightness(0) invert(1);
+    }
+
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer-section {
+        margin-bottom: 30px;
+      }
+    }
   </style>
 
   <body>
@@ -210,7 +318,9 @@
         <li><a href="#">Review</a></li>
         <li><a href="#">More</a></li>
         <li>
-          <button class="cart-btn">Cart <span id="cart-count">0</span></button>
+          <button class="cart-btn">
+            Cart (<span id="cart-count">0</span>)
+          </button>
         </li>
         <li><button class="sign-in-btn">Log Out</button></li>
       </ul>
@@ -220,10 +330,14 @@
         <span></span>
       </div>
     </nav>
+    <div class="cart-container" id="cart-container">
+      <h3>Cart Items</h3>
+      <ul id="cart-items"></ul>
+    </div>
     <ul class="links">
-      <li><a href="">Hotels</a></li>
+      <li><a href="./hotel.html">Hotels</a></li>
       <li><a href="">Things to Do</a></li>
-      <li><a href="">Restaurants</a></li>
+      <li><a href="./Restaurants.html">Restaurants</a></li>
       <li><a href="">Flights</a></li>
       <li><a href="">Vocational Rentals</a></li>
     </ul>
@@ -236,75 +350,389 @@
       <button id="search-btn">🔍</button>
     </div>
     <div class="product-container">
-      <!-- Product Card 1 -->
-      <div class="product-card">
+      <div class="product-card" data-price="499">
         <img
           src="https://i0.wp.com/oneday.travel/wp-content/uploads/one-day-hyderabad-local-sightseeing-tour-package-private-cab-header.jpg?fit=1920%2C1280&ssl=1"
           alt="Product 1"
           class="product-image"
         />
         <p class="product-description">
-          Beautiful beach resort with stunning views.
+          Charminar is renowned as a symbol of Hyderabad and the Qutb Shahi
+          dynasty, marking the founding of the city and known for its intricate
+          architecture and the bustling markets nearby.
         </p>
+        <p class="product-price">Price: ₹499</p>
+        <button
+          class="location-btn"
+          onclick="openLocation(this)"
+          data-location="https://www.google.com/maps/search/charminar/@17.3612781,78.4726596,17z?entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+        >
+          Location</button
+        ><br /><br />
         <button class="add-to-cart-btn">Add to Cart</button>
       </div>
-      <!-- Product Card 2 -->
-      <div class="product-card">
+
+      <div class="product-card" data-price="699">
         <img
           src="https://www.hyderabadtourism.travel/images/v2/header-places/tiny-j/golconda-fort-hyderabad-tourism-attraction-entryfee-timings-reviews-header.jpeg"
           alt="Product 2"
           class="product-image"
         />
         <p class="product-description">
-          Luxury hotel with world-class amenities.
+          Golconda is a fortified citadel and ruined city located on the western
+          outskirts of Hyderabad, Telangana, India. The fort was originally
+          built by Kakatiya ruler Pratāparudra in the 11th century out of mud
+          walls.
         </p>
+        <p class="product-price">Price: ₹699</p>
+        <button
+          class="location-btn"
+          onclick="openLocation(this)"
+          data-location="https://www.google.com/maps/place/Golconda+Fort/@17.3842008,78.3993343,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb968ea6aea98f:0x6b76ecdfd65a335a!8m2!3d17.3842008!4d78.4019092!16zL20vMDdtd2p5?entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+        >
+          Location</button
+        ><br /><br />
         <button class="add-to-cart-btn">Add to Cart</button>
       </div>
-      <!-- Product Card 3 -->
-      <div class="product-card">
+
+      <div class="product-card" data-price="999">
         <img
           src="https://i0.wp.com/weekendyaari.in/wp-content/uploads/2024/09/weekend-yaari-ramoji-film-city-1.webp?fit=1921%2C1081&ssl=1"
           alt="Product 3"
           class="product-image"
         />
         <p class="product-description">
-          Cozy vacation home in a quiet neighborhood.
+          Ramoji Film City Spanning over 2000 acres, it stands as a unique
+          thematic tourism destination and is recognised by Guinness World
+          Records as the world's largest film city. Annually, around 200 film
+          units realise their cinematic visions here, with over 3,300 films shot
+          in various Indian languages.
         </p>
+        <p class="product-price">Price: ₹999</p>
+        <button
+          class="location-btn"
+          onclick="openLocation(this)"
+          data-location="https://www.google.com/maps/search/ramoji+film+city/@17.5038658,78.3543855,12z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+        >
+          Location</button
+        ><br /><br />
         <button class="add-to-cart-btn">Add to Cart</button>
       </div>
-      <!-- Product Card 4 -->
-      <div class="product-card">
+
+      <div class="product-card" data-price="799">
         <img
           src="https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/2018/05/02180148/jagannath2.jpg"
           alt="Product 4"
           class="product-image"
         />
         <p class="product-description">
-          Gourmet dining experience with a variety of dishes.
+          The Jagannath Temple in Hyderabad, India, Telangana, is a modern
+          temple built by the Odia community of the city of Hyderabad dedicated
+          to the Hindu God Jagannath. The temple located near Banjara hills Road
+          no.12 in Hyderabad is famous for its annual Rathyatra festival
+          attended by thousands of devotees.
         </p>
+        <p class="product-price">Price: ₹799</p>
+        <button
+          class="location-btn"
+          onclick="openLocation(this)"
+          data-location="https://www.google.com/maps/search/jagannath+temple/@17.5038658,78.3543854,12z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+        >
+          Location</button
+        ><br /><br />
         <button class="add-to-cart-btn">Add to Cart</button>
       </div>
+      <div class="product-card" data-price="599">
+        <img
+          src="https://media.easemytrip.com/media/Blog/India/637045878100143683/637045878100143683fiQVxm.jpg"
+          alt="Product 5"
+          class="product-image"
+        />
+        <p class="product-description">
+          Hussain Sagar is a heart-shaped lake in Hyderabad, Telangana, India,
+          built by Ibrahim Quli Qutb Shah in 1562. It is spread across an area
+          of 5.7 square kilometres and is fed by the River Musi. A large
+          monolithic statue of the Gautama Buddha, erected in 1992, stands on
+          Gibraltar Rock in the middle of the lake.
+        </p>
+        <p class="product-price">Price: ₹599</p>
+        <button
+          class="location-btn"
+          onclick="openLocation(this)"
+          data-location="https://www.google.com/maps/place/Hussain+Sagar/@17.4241044,78.453917,14z/data=!3m1!4b1!4m6!3m5!1s0x3bcb97558c2e9b6b:0x25705363cc844e9d!8m2!3d17.4238798!4d78.4738215!16zL20vMDNzX3Js?entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+        >
+          Location</button
+        ><br /><br />
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card" data-price="1299">
+        <img
+          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhELm5xQQCwhPZo_7udKbX6smpVGhbZAIdztrHbLEvL2zaw_fUC0p4S4K3mEl7bT0eIxzPtV4LKTlVflz6D6mbs3pozAO1ExTz-7dEXzNzjqbSZkDRYu1gzsdtnFjzeLf4BhtS-_PSFEgHyNf1FqR-8_pI2NnEiayBKwUh2JSu6NaO5DZcIjxtLmbVUdUij/w640-h598/Screenshot%202024-12-26%20at%201.29.18%20PM.webp"
+          alt="Product 6"
+          class="product-image"
+        />
+        <p class="product-description">
+          The ammapalli temple is known for its intricate carvings and
+          sculptures, which are a blend of South Indian and North Indian
+          architectural styles. The temple is also known for its unique
+          architectural style, which is a blend of the Vesara and Dravida
+          styles.
+        </p>
+        <p class="product-price">Price: ₹1299</p>
+        <button
+          class="location-btn"
+          onclick="openLocation(this)"
+          data-location="https://www.google.com/maps/place/Shri+Sita+Rama+Chandra+Swami+Temple,+Ammapally/@17.2571927,78.3427646,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcbbee750a6884b:0x84eb9a257d92679c!8m2!3d17.2571927!4d78.3453395!16s%2Fg%2F1trpjnvt?entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+        >
+          Location</button
+        ><br /><br />
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card" data-price="1199">
+        <img
+          src="https://telanganatourism.gov.in/assets/images/destinations/divine-destinations/hyderabad/sliders/birla-mandir1.jpg"
+          alt="Product 7"
+          class="product-image"
+        />
+        <p class="product-description">
+          Sanghi Temple, which is said to be the replica of Tirumala temple is
+          located at Sanghi Nagar in Telangana in India, is about 35 km from
+          Hyderabad city. The sacred Raja Gopuram, which is very tall, can be
+          seen from several kilometers away..
+        </p>
+        <p class="product-price">Price: ₹1199</p>
+        <button
+          class="location-btn"
+          onclick="openLocation(this)"
+          data-location="https://www.google.com/maps/search/sanghi+temple/@17.2688096,78.6740637,17z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+        >
+          Location</button
+        ><br /><br />
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card" data-price="1499">
+        <img
+          src="https://blogbox.indianeagle.com/wp-content/uploads/2017/10/Yadagirigutta-Yadadri-Temple-Complex-Telangana.jpg"
+          alt="Product 8"
+          class="product-image"
+        />
+        <p class="product-description">
+          Sri Lakshmi Narasimha Swamy Temple Yadadri is the most famous temple
+          of Telangana. It is glorified as the Pancha Narasimha Kshetra and the
+          Rishi Aradhana Kshetra. Yadadri Temple is famed as the Tirumala of
+          Telangana. Its architectural grandeur exceeds the quintessence of the
+          Indian Temple Architecture.
+        </p>
+        <p class="product-price">Price: ₹1499</p>
+        <button
+          class="location-btn"
+          onclick="openLocation(this)"
+          data-location="https://www.google.com/maps/place/Yadagirigutta+Temple+Developement+Authority/@17.4341622,78.4522004,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb91146e9751ab:0x65348ff81c8ca624!8m2!3d17.4341622!4d78.4547753!16s%2Fg%2F11j0z4tdr2?entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+        >
+          Location</button
+        ><br /><br />
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card" data-price="1499">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtJIkHZJG2CqB93BUAdFNEh2OZuPdE9Y3ZgQ&s"
+          alt="Product 9"
+          class="product-image"
+        />
+        <p class="product-description">
+          Swarnagiri Temple is a Hindu temple dedicated to Lord Venkateswara,
+          located in Bhuvanagiri district, Telangana, India.
+        </p>
+        <p class="product-price">Price: ₹1499</p>
+        <button
+          class="location-btn"
+          onclick="openLocation(this)"
+          data-location="https://www.google.com/maps/search/swarnagiri+temple/@17.4535433,78.3021334,10z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+        >
+          Location</button
+        ><br /><br />
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card" data-price="1111">
+        <img
+          src="https://i0.wp.com/allabouthyderabad.com/wp-content/uploads/2024/01/Badrinath-Temple-Hyderabad.jpg"
+          alt="Product 10"
+          class="product-image"
+        />
+        <p class="product-description">
+          In Hyderabad, there's a Badrinath temple, a replica of the original in
+          Uttarakhand, located in the village of Bandamailaram, Medchal
+          district, about 40 km from Hyderabad, built by an NGO of families who
+          migrated from Uttarakhand.
+        </p>
+        <p class="product-price">Price: ₹1111</p>
+        <button
+          class="location-btn"
+          onclick="openLocation(this)"
+          data-location="https://www.google.com/maps/search/badrinath+temple+hyderabad+about/@17.6924383,78.4945314,17z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+        >
+          Location</button
+        ><br /><br />
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card" data-price="699">
+        <img
+          src="https://media.telanganatoday.com/wp-content/uploads/2024/09/Shifting-of-Nehru-zoo-Forest-team-visits-Vantara-Jamnagar.jpg"
+          alt="Product 11"
+          class="product-image"
+        />
+        <p class="product-description">
+          Nehru Zoological Park is a zoo located near Mir Alam Tank in
+          Bahadurpura, Telangana, India. It is one of the most visited
+          destinations in Hyderabad.
+        </p>
+        <p class="product-price">Price: ₹699</p>
+        <button
+          class="location-btn"
+          onclick="openLocation(this)"
+          data-location="https://www.google.com/maps/place/Nehru+Zoological+Park/@17.3505897,78.4496761,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb97c6c008fa9d:0x7b71bb447d86245b!8m2!3d17.3505897!4d78.452251!16zL20vMDd0cHFt?entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+        >
+          Location</button
+        ><br /><br />
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      <div class="product-card" data-price="499">
+        <img
+          src="https://s7ap1.scene7.com/is/image/incredibleindia/lumbini-park-hyderabad-secunderabad-telangana-1-musthead-hero?qlt=82&ts=1727331680735"
+          alt="Product 4"
+          class="product-image"
+        />
+        <p class="product-description">
+          Lumbini Park, officially T. Anjaiah Lumbini Park, is a small public,
+          urban park of 3 hectares adjacent to Hussain Sagar in Hyderabad,
+          India.
+        </p>
+        <p class="product-price">Price: ₹499</p>
+        <button
+          class="location-btn"
+          onclick="openLocation(this)"
+          data-location="https://www.google.com/maps/place/Lumbini+Park/@17.4096811,78.4698595,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb975f2cb1eca5:0x65121ff7e664185c!8m2!3d17.4096811!4d78.4724344!16s%2Fm%2F04jm4h2?entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+        >
+          Location</button
+        ><br /><br />
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+      <div id="cart-container" style="display: none">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: ₹<span id="total-price">0</span></p>
+      </div>
     </div>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>About TripAdvisor</h3>
+          <p>
+            Discover the best places to visit, stay, and eat with genuine
+            reviews and curated packages.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="./hotel.html">Hotels</a></li>
+            <li><a href="#">Restaurants</a></li>
+            <li><a href="#">Flights</a></li>
+            <li><a href="#">Reviews</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p>Email: sathish@gmail.com</p>
+          <p>Phone: + 8106865160</p>
+          <div class="social-icons">
+            <a href="#"
+              ><img
+                src="https://img.icons8.com/ios-filled/24/ffffff/facebook.png"
+            /></a>
+            <a href="#"
+              ><img
+                src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new.png"
+            /></a>
+            <a href="#"
+              ><img
+                src="https://img.icons8.com/ios-filled/24/ffffff/twitter.png"
+            /></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 TripAdvisor (10K CODERS). All rights reserved.
+      </div>
+    </footer>
+
     <script>
       let cartCount = 0;
+      let totalAmount = 0;
       const cartCountElement = document.getElementById("cart-count");
       const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
-    
+      const cartContainer = document.getElementById("cart-container");
+      const cartItemsList = document.getElementById("cart-items");
+      const totalPriceElement = document.getElementById("total-price");
+      const cartButton = document.querySelector(".cart-btn");
+
+      let cartItems = [];
+
       addToCartButtons.forEach((button) => {
         button.addEventListener("click", function () {
+          let productCard = this.closest(".product-card");
+          let productName = productCard
+            .querySelector(".product-description")
+            .textContent.trim();
+          let productPrice = Number(productCard.getAttribute("data-price"));
+          if (isNaN(productPrice)) {
+            alert("Error: Invalid product price.");
+            return;
+          }
+
+          let cartItem = document.createElement("li");
+          cartItem.classList.add("cart-item");
+          cartItem.innerHTML = `${productName} - ₹${productPrice} <button class='remove-btn'>Delete</button>`;
+
+          cartItemsList.appendChild(cartItem);
+          cartItems.push(cartItem);
           cartCount++;
+
+          totalAmount += productPrice;
+
           cartCountElement.textContent = cartCount;
+          totalPriceElement.textContent = totalAmount;
+
+          cartItem
+            .querySelector(".remove-btn")
+            .addEventListener("click", function () {
+              cartItem.remove();
+              cartItems = cartItems.filter((item) => item !== cartItem);
+              cartCount--;
+
+              totalAmount -= productPrice;
+
+              cartCountElement.textContent = cartCount;
+              totalPriceElement.textContent = totalAmount;
+            });
         });
       });
-    
-      // Mobile menu toggle
-      const bar = document.querySelector(".bar");
-      const navLinks = document.querySelector(".nav-links");
-    
-      bar.addEventListener("click", function () {
-        navLinks.classList.toggle("active");
+
+      cartButton.addEventListener("click", function () {
+        cartContainer.style.display =
+          cartContainer.style.display === "block" ? "none" : "block";
       });
+
+      document
+        .querySelector(".sign-in-btn")
+        .addEventListener("click", function () {
+          window.location.href = "index.html"; // Redirects to the login page
+        });
+
+      function openLocation(button) {
+        let locationUrl = button.getAttribute("data-location");
+        window.open(locationUrl);
+      }
     </script>
-    
   </body>
 </html>
