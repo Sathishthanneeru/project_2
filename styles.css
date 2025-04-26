@@ -81,4 +81,25 @@ button:hover {
 .hidden {
   display: none;
 }
+.guest-button {
+  margin-top: 10px;
+  background-color: #888;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.guest-button:hover {
+  background-color: #666;
+}
+
+.password-note {
+  font-size: 0.8em;
+  color: #555;
+  margin-top: 5px;
+  display: block;
+}
 

@@ -3,16 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>TRIPADVISOR</title>
   </head>
   <style>
     .navbar {
+      position: sticky;
+      top: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 15px 20px;
       background: #333;
       color: white;
+      z-index: 1000; /* to stay above other elements */
     }
 
     .logo {
@@ -87,7 +90,10 @@
         display: flex;
       }
     }
+
     .links {
+      position: sticky;
+      top: 80px;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -97,7 +103,31 @@
       padding: 20px;
       list-style: none;
       font-size: 20px;
+      background: white;
+      z-index: 999;
+      animation: slideDown 0.7s ease-out;
     }
+    @keyframes slideDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .links li a {
+      display: inline-block; /* Add this */
+      text-decoration: none;
+      color: rgb(145, 13, 13);
+      transition: transform 0.5s ease, color 0.3s ease;
+    }
+    .links li a:hover {
+      transform: scale(1.2);
+      color: #0077cc;
+    }
+
     .links a {
       text-decoration: none;
     }
@@ -307,20 +337,101 @@
         margin-bottom: 30px;
       }
     }
+
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .product-card {
+      width: 300px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product-description {
+      flex-grow: 1; /* Take available space */
+      margin: 15px 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .product-price {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .location-btn,
+    .add-to-cart-btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background-color: #97895a;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    .location-btn:hover,
+    .add-to-cart-btn:hover {
+      background-color: #0056b3;
+    }
+
+
+    .product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  
+  
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+
+.product-image:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+}
+
   </style>
 
   <body>
     <nav class="navbar">
       <div class="logo">TRIPADVISOR</div>
       <ul class="nav-links">
-        <li><a href="#">Discover</a></li>
+        <!-- <li><a href="#">Discover</a></li>
         <li><a href="#">trips</a></li>
         <li><a href="#">Review</a></li>
-        <li><a href="#">More</a></li>
+        <li><a href="#">More</a></li> -->
         <li>
-          <button class="cart-btn">
+          <!-- <button class="cart-btn">
             Cart (<span id="cart-count">0</span>)
+          </button> -->
+          <button class="cart-btn">
+            🛒Cart(<span id="cart-count">0</span>)
           </button>
+          
         </li>
         <li><button class="sign-in-btn">Log Out</button></li>
       </ul>
@@ -336,10 +447,10 @@
     </div>
     <ul class="links">
       <li><a href="./hotel.html">Hotels</a></li>
-      <li><a href="">Things to Do</a></li>
+      <li><a href="./thingstodo.html">Things to Do</a></li>
       <li><a href="./Restaurants.html">Restaurants</a></li>
-      <li><a href="">Flights</a></li>
-      <li><a href="">Vocational Rentals</a></li>
+      <li><a href="./flights.html">Flights</a></li>
+      <li><a href="./vocationalrentals.html">Vocational Rentals</a></li>
     </ul>
     <div class="search-container">
       <input
@@ -356,6 +467,7 @@
           alt="Product 1"
           class="product-image"
         />
+        <h4>charminar</h4>
         <p class="product-description">
           Charminar is renowned as a symbol of Hyderabad and the Qutb Shahi
           dynasty, marking the founding of the city and known for its intricate
@@ -378,6 +490,7 @@
           alt="Product 2"
           class="product-image"
         />
+        <h4>golconda</h4>
         <p class="product-description">
           Golconda is a fortified citadel and ruined city located on the western
           outskirts of Hyderabad, Telangana, India. The fort was originally
@@ -401,6 +514,7 @@
           alt="Product 3"
           class="product-image"
         />
+        <h4>ramoji filmcity</h4>
         <p class="product-description">
           Ramoji Film City Spanning over 2000 acres, it stands as a unique
           thematic tourism destination and is recognised by Guinness World
@@ -425,6 +539,7 @@
           alt="Product 4"
           class="product-image"
         />
+        <h4>jagannath temple</h4>
         <p class="product-description">
           The Jagannath Temple in Hyderabad, India, Telangana, is a modern
           temple built by the Odia community of the city of Hyderabad dedicated
@@ -448,6 +563,7 @@
           alt="Product 5"
           class="product-image"
         />
+        <h4>hussain sagar</h4>
         <p class="product-description">
           Hussain Sagar is a heart-shaped lake in Hyderabad, Telangana, India,
           built by Ibrahim Quli Qutb Shah in 1562. It is spread across an area
@@ -471,6 +587,7 @@
           alt="Product 6"
           class="product-image"
         />
+        <h4>ammapalli temple</h4>
         <p class="product-description">
           The ammapalli temple is known for its intricate carvings and
           sculptures, which are a blend of South Indian and North Indian
@@ -494,6 +611,7 @@
           alt="Product 7"
           class="product-image"
         />
+        <h4>sanghi temple</h4>
         <p class="product-description">
           Sanghi Temple, which is said to be the replica of Tirumala temple is
           located at Sanghi Nagar in Telangana in India, is about 35 km from
@@ -516,6 +634,7 @@
           alt="Product 8"
           class="product-image"
         />
+        <h4>yadhagiri gutta</h4>
         <p class="product-description">
           Sri Lakshmi Narasimha Swamy Temple Yadadri is the most famous temple
           of Telangana. It is glorified as the Pancha Narasimha Kshetra and the
@@ -535,10 +654,11 @@
       </div>
       <div class="product-card" data-price="1499">
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtJIkHZJG2CqB93BUAdFNEh2OZuPdE9Y3ZgQ&s"
+          src="https://www.sakshi.com/gallery_images/2024/05/2/Swarnagiri%20Temple%20at%20Bhuvanagiri%20Photos-5.jpg"
           alt="Product 9"
           class="product-image"
         />
+        <h4>swarnagiri</h4>
         <p class="product-description">
           Swarnagiri Temple is a Hindu temple dedicated to Lord Venkateswara,
           located in Bhuvanagiri district, Telangana, India.
@@ -559,6 +679,7 @@
           alt="Product 10"
           class="product-image"
         />
+        <h4>badrinath temple</h4>
         <p class="product-description">
           In Hyderabad, there's a Badrinath temple, a replica of the original in
           Uttarakhand, located in the village of Bandamailaram, Medchal
@@ -581,6 +702,7 @@
           alt="Product 11"
           class="product-image"
         />
+        <h4>nehru park</h4>
         <p class="product-description">
           Nehru Zoological Park is a zoo located near Mir Alam Tank in
           Bahadurpura, Telangana, India. It is one of the most visited
@@ -599,9 +721,10 @@
       <div class="product-card" data-price="499">
         <img
           src="https://s7ap1.scene7.com/is/image/incredibleindia/lumbini-park-hyderabad-secunderabad-telangana-1-musthead-hero?qlt=82&ts=1727331680735"
-          alt="Product 4"
+          alt="Product 12"
           class="product-image"
         />
+        <h4>lumbini park</h4>
         <p class="product-description">
           Lumbini Park, officially T. Anjaiah Lumbini Park, is a small public,
           urban park of 3 hectares adjacent to Hussain Sagar in Hyderabad,
@@ -623,6 +746,12 @@
         <p>Total: ₹<span id="total-price">0</span></p>
       </div>
     </div>
+    <p
+      id="no-results"
+      style="display: none; color: red; text-align: center; margin-top: 20px"
+    >
+      No results found.
+    </p>
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-section">
@@ -681,9 +810,7 @@
       addToCartButtons.forEach((button) => {
         button.addEventListener("click", function () {
           let productCard = this.closest(".product-card");
-          let productName = productCard
-            .querySelector(".product-description")
-            .textContent.trim();
+          let productName = productCard.querySelector("h4").textContent.trim();
           let productPrice = Number(productCard.getAttribute("data-price"));
           if (isNaN(productPrice)) {
             alert("Error: Invalid product price.");
@@ -733,6 +860,25 @@
         let locationUrl = button.getAttribute("data-location");
         window.open(locationUrl);
       }
+      const searchInput = document.getElementById("search-input");
+      const noResults = document.getElementById("no-results");
+
+      searchInput.addEventListener("input", () => {
+        const query = searchInput.value.toLowerCase().trim();
+        const cards = document.querySelectorAll(".product-card");
+        let matchCount = 0;
+
+        cards.forEach((card) => {
+          const title = card.querySelector("h4").textContent.toLowerCase();
+          if (title.includes(query)) {
+            card.style.display = "block";
+            matchCount++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+        noResults.style.display = matchCount === 0 ? "block" : "none";
+      });
     </script>
   </body>
 </html>
