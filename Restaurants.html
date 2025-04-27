@@ -14,6 +14,21 @@
         background-color: #333;
         padding: 1rem;
         text-align: center;
+
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 18px;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
       }
       nav button {
         padding: 10px 20px;
@@ -82,16 +97,55 @@
         margin-top: 20px;
         background: #dc3545;
       }
+      .links {
+        position: sticky;
+        top: 70px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 40px;
+        align-content: center;
+        justify-content: center;
+        padding: 20px;
+        list-style: none;
+        font-size: 20px;
+        background: white;
+        z-index: 999;
+        animation: slideDown 0.7s ease-out;
+      }
+      @keyframes slideDown {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .links li a {
+        display: inline-block; /* Add this */
+        text-decoration: none;
+        color: rgb(145, 13, 13);
+        transition: transform 0.5s ease, color 0.3s ease;
+      }
+      .links li a:hover {
+        transform: scale(1.2);
+        color: #0077cc;
+      }
+
+      .links a {
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
     <nav>
       <button onclick="goHome()"><a href="./homepage.html">Home</a></button>
     </nav>
+    <div id="header"></div>
 
-    <div class="container" id="restaurant-list">
-      
-    </div>
+    <div class="container" id="restaurant-list"></div>
 
     <div class="menu-modal" id="menuModal">
       <div class="menu-content">
@@ -233,6 +287,11 @@
       }
 
       renderRestaurants();
+      fetch("header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+        });
     </script>
   </body>
 </html>

@@ -19,6 +19,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .cart-icon {
@@ -105,6 +108,47 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
+    .links {
+      position: sticky;
+      top: 80px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-content: center;
+      justify-content: center;
+      padding: 20px;
+      list-style: none;
+      font-size: 20px;
+      background: white;
+      z-index: 999;
+      animation: slideDown 0.7s ease-out;
+    }
+
+    @keyframes slideDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .links li a {
+      display: inline-block;
+      text-decoration: none;
+      color: rgb(145, 13, 13);
+      transition: transform 0.5s ease, color 0.3s ease;
+    }
+    .links li a:hover {
+      transform: scale(1.2);
+      color: #0077cc;
+    }
+
+    .links a {
+      text-decoration: none;
+    }
   </style>
   <body>
     <nav class="navbar">
@@ -116,6 +160,7 @@
         <a href="./homepage.html" class="home-btn">HOME</a>
       </div>
     </nav>
+    <div id="header"></div>
 
     <div class="room-container">
       <div class="room-card">
@@ -281,6 +326,11 @@
         cartDiv.style.display =
           cartDiv.style.display === "block" ? "none" : "block";
       }
+      fetch("header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+        });
     </script>
   </body>
 </html>

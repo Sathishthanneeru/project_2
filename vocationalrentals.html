@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vacation Rentals</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 
     <style>
       * {
@@ -13,37 +16,45 @@
         box-sizing: border-box;
       }
 
+      /* BASE STYLES */
       body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f4;
         color: #333;
         line-height: 1.6;
-        padding-top: 50px;
+        padding-top: 80px; /* Enough padding for sticky/fixed nav */
       }
 
+      /* HEADER & NAVIGATION */
       header {
-        background-color: #333;
+        background: linear-gradient(to right, #00c6ff, #0072ff);
         color: #fff;
         padding: 20px;
-        position: fixed;
-        width: 100%;
+        position: sticky;
         top: 0;
         z-index: 1000;
+        width: 100%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
 
       nav h1 {
-        display: inline;
         font-size: 1.8rem;
       }
 
       nav ul {
         list-style: none;
-        float: right;
+        display: flex;
+        gap: 20px;
       }
 
       nav ul li {
-        display: inline;
-        margin-left: 20px;
+        display: inline-block;
       }
 
       nav ul li a {
@@ -57,6 +68,65 @@
         color: #4caf50;
       }
 
+      /* NAV BUTTON */
+      .nav-btn {
+        background-color: #ffffff;
+        color: #0072ff;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 30px;
+        box-shadow: 0 4px 15px rgba(0, 114, 255, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: "Quicksand", sans-serif;
+      }
+
+      .nav-btn:hover {
+        background-color: #0072ff;
+        color: #fff;
+        box-shadow: 0 6px 20px rgba(0, 114, 255, 0.4);
+        transform: translateY(-2px);
+      }
+
+      .nav-btn i {
+        margin-right: 8px;
+      }
+
+      /* LINKS SECTION (below nav) */
+      .links {
+        position: sticky;
+        top: 70px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: center;
+        padding: 20px;
+        list-style: none;
+        font-size: 20px;
+        background: white;
+        z-index: 999;
+        animation: slideDown 0.7s ease-out;
+      }
+
+      .links li {
+        display: flex;
+      }
+
+      .links li a {
+        display: inline-block;
+        text-decoration: none;
+        color: rgb(145, 13, 13);
+        transition: transform 0.5s ease, color 0.3s ease;
+      }
+
+      .links li a:hover {
+        transform: scale(1.2);
+        color: #0077cc;
+      }
+
+      /* SECTIONS */
       section {
         margin: 100px 0 20px 0;
         padding: 20px;
@@ -77,6 +147,7 @@
         margin-bottom: 20px;
       }
 
+      /* CARD STYLES */
       .card {
         background-color: #f9f9f9;
         padding: 20px;
@@ -100,6 +171,7 @@
         color: #444;
       }
 
+      /* FOOTER */
       footer {
         text-align: center;
         background-color: #333;
@@ -111,15 +183,31 @@
         margin-top: 20px;
       }
 
-      
+      /* ANIMATIONS */
+      @keyframes slideDown {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* RESPONSIVE DESIGN */
       @media screen and (max-width: 768px) {
+        nav {
+          flex-direction: column;
+          align-items: center;
+        }
+
         nav ul {
-          float: none;
-          text-align: center;
+          flex-direction: column;
+          margin-top: 10px;
         }
 
         nav ul li {
-          display: block;
           margin: 10px 0;
         }
 
@@ -145,131 +233,136 @@
           font-size: 0.9rem;
         }
       }
-      nav {
-  background: linear-gradient(to right, #00c6ff, #0072ff);
-  padding: 1rem 2rem;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.nav-btn {
-  background-color: #ffffff;
-  color: #0072ff;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 30px;
-  box-shadow: 0 4px 15px rgba(0, 114, 255, 0.2);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Quicksand', sans-serif;
-}
-
-.nav-btn:hover {
-  background-color: #0072ff;
-  color: #fff;
-  box-shadow: 0 6px 20px rgba(0, 114, 255, 0.4);
-  transform: translateY(-2px);
-}
-
-.nav-btn i {
-  margin-right: 8px;
-}
-
     </style>
   </head>
 
   <body>
     <header>
-        <nav>
-            <h1>Vacation Rentals</h1>
-            <ul>
-               
-                <li><a href="#homes">Home Rentals</a></li>
-                <li><a href="#hotels">Hotels</a></li>
-                <li><a href="#cars">Car Rentals</a></li>
-                <li><a href="#experiences">Experiences</a></li>
-                <li><a href="#equipment">Equipment</a></li>
-                <li><a href="#boats">Boats</a></li>
-                <button onclick="goHome()" class="nav-btn">
-                    <i class="fas fa-home"></i> Home
-                  </button>
-            </ul>
-        </nav>
-      
+      <nav>
+        <h1>Vacation Rentals</h1>
+        <ul>
+          <li><a href="#homes">Home Rentals</a></li>
+          <li><a href="#hotels">Hotels</a></li>
+          <li><a href="#cars">Car Rentals</a></li>
+          <li><a href="#experiences">Experiences</a></li>
+          <li><a href="#equipment">Equipment</a></li>
+          <li><a href="#boats">Boats</a></li>
+          <button onclick="goHome()" class="nav-btn">
+            <i class="fas fa-home"></i> Home
+          </button>
+        </ul>
+      </nav>
+      <div id="header"></div>
     </header>
 
     <section id="homes">
-        <h2>Vacation Home Rentals</h2>
-        <p>Find entire homes, apartments, cottages, and more for your vacation! Explore listings from major platforms:</p>
-        <div class="card">
-            <div class="card-content">
-                <h3><a href="https://www.magicbricks.com/independent-house-for-rent-in-hyderabad-pppfr" target="_blank">Airbnb</a></h3>
-                <p>Explore a variety of vacation homes, private apartments, and unique stays.</p>
-            </div>
+      <h2>Vacation Home Rentals</h2>
+      <p>
+        Find entire homes, apartments, cottages, and more for your vacation!
+        Explore listings from major platforms:
+      </p>
+      <div class="card">
+        <div class="card-content">
+          <h3>
+            <a
+              href="https://www.magicbricks.com/independent-house-for-rent-in-hyderabad-pppfr"
+              target="_blank"
+              >Airbnb</a
+            >
+          </h3>
+          <p>
+            Explore a variety of vacation homes, private apartments, and unique
+            stays.
+          </p>
         </div>
+      </div>
     </section>
 
     <section id="hotels">
-        <h2>Hotel Rentals</h2>
-        <p>Choose from luxury, budget, and boutique hotels at great prices!</p>
-        <div class="card">
-            <div class="card-content">
-                <h3><a href="https://www.oyorooms.com/" target="_blank">Hotels.com</a></h3>
-                <p>Book hotels with amazing facilities like pools, gyms, and breakfast included.</p>
-            </div>
+      <h2>Hotel Rentals</h2>
+      <p>Choose from luxury, budget, and boutique hotels at great prices!</p>
+      <div class="card">
+        <div class="card-content">
+          <h3>
+            <a href="https://www.oyorooms.com/" target="_blank">Hotels.com</a>
+          </h3>
+          <p>
+            Book hotels with amazing facilities like pools, gyms, and breakfast
+            included.
+          </p>
         </div>
+      </div>
     </section>
 
     <section id="cars">
-        <h2>Car Rentals</h2>
-        <p>Rent a car to explore at your own pace, with various types of vehicles available.</p>
-        <div class="card">
-            <div class="card-content">
-                <h3><a href="https://www.enterprise.com" target="_blank">Enterprise</a></h3>
-                <p>Pick up a car anywhere and drive with full flexibility and insurance options.</p>
-            </div>
+      <h2>Car Rentals</h2>
+      <p>
+        Rent a car to explore at your own pace, with various types of vehicles
+        available.
+      </p>
+      <div class="card">
+        <div class="card-content">
+          <h3>
+            <a href="https://www.enterprise.com" target="_blank">Enterprise</a>
+          </h3>
+          <p>
+            Pick up a car anywhere and drive with full flexibility and insurance
+            options.
+          </p>
         </div>
+      </div>
     </section>
 
     <section id="experiences">
-        <h2>Experience Rentals</h2>
-        <p>Discover exciting activities like tours, classes, and cultural experiences.</p>
-        <div class="card">
-            <div class="card-content">
-                <h3><a href="https://www.viator.com" target="_blank">Viator</a></h3>
-                <p>Book group tours, private experiences, and adventure activities all in one place.</p>
-            </div>
+      <h2>Experience Rentals</h2>
+      <p>
+        Discover exciting activities like tours, classes, and cultural
+        experiences.
+      </p>
+      <div class="card">
+        <div class="card-content">
+          <h3><a href="https://www.viator.com" target="_blank">Viator</a></h3>
+          <p>
+            Book group tours, private experiences, and adventure activities all
+            in one place.
+          </p>
         </div>
+      </div>
     </section>
 
     <section id="equipment">
-        <h2>Equipment Rentals</h2>
-        <p>Rent outdoor gear, bikes, ski equipment, and more for your adventures!</p>
-        <div class="card">
-            <div class="card-content">
-                <h3><a href="https://www.outdoorsy.com" target="_blank">Outdoorsy</a></h3>
-                <p>Rent RVs, camping equipment, and more for your next road trip or adventure.</p>
-            </div>
+      <h2>Equipment Rentals</h2>
+      <p>
+        Rent outdoor gear, bikes, ski equipment, and more for your adventures!
+      </p>
+      <div class="card">
+        <div class="card-content">
+          <h3>
+            <a href="https://www.outdoorsy.com" target="_blank">Outdoorsy</a>
+          </h3>
+          <p>
+            Rent RVs, camping equipment, and more for your next road trip or
+            adventure.
+          </p>
         </div>
+      </div>
     </section>
 
     <section id="boats">
-        <h2>Boat and Yacht Rentals</h2>
-        <p>Rent a boat, yacht, or sailboat and explore the waters.</p>
-        <div class="card">
-            <div class="card-content">
-                <h3><a href="http://www.thehbc.club/" target="_blank">GetMyBoat</a></h3>
-                <p>Book a boat rental or yacht charter with a captain or on your own.</p>
-            </div>
+      <h2>Boat and Yacht Rentals</h2>
+      <p>Rent a boat, yacht, or sailboat and explore the waters.</p>
+      <div class="card">
+        <div class="card-content">
+          <h3>
+            <a href="http://www.thehbc.club/" target="_blank">GetMyBoat</a>
+          </h3>
+          <p>
+            Book a boat rental or yacht charter with a captain or on your own.
+          </p>
         </div>
+      </div>
     </section>
     <script>
-      
       document.querySelectorAll("a").forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
@@ -279,9 +372,13 @@
         });
       });
       function goHome() {
-      window.location.href = "./homepage.html";
-    }
-      
+        window.location.href = "./homepage.html";
+      }
+      fetch("header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+        });
     </script>
   </body>
 </html>
