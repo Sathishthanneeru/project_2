@@ -1,20 +1,40 @@
 body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: white;
   margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end; /* Aligns form to the right */
+  align-items: center; /* Vertically centers the form */
+  background-image: url("https://your-image-url.jpg"); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end; /* Aligns form to the right */
+  align-items: center; /* Vertically centers the form */
+  background-image: url("https://www.pixelstalk.net/wp-content/uploads/images6/4K-Travel-Wallpaper-HD-Free-download.jpg"); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .container {
   width: 100%;
   max-width: 350px;
-  background: #dff5c4;
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Semi-transparent background for readability */
+  padding: 15px 18px;
   border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  margin-right: 5%; /* Adds spacing from the right edge */
   text-align: center;
 }
 
@@ -35,16 +55,16 @@ h2 {
 
 .input-group input {
   width: 100%;
-  padding: 8px;
-  font-size: 16px;
+  padding: 6px;
+  font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 button {
   width: 100%;
-  padding: 10px;
-  font-size: 16px;
+  padding: 8px;
+  font-size: 15px;
   background-color: #28a745;
   color: white;
   border: none;
@@ -104,7 +124,7 @@ button:hover {
 }
 .logo {
   width: 90%;
-  max-width: 180px; 
+  max-width: 180px;
   height: auto;
   margin: 0 auto 20px;
   display: block;
@@ -120,5 +140,3 @@ button:hover {
   margin-top: 5px;
   display: block;
 }
-
-
