@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmPasswordGroup = document.getElementById("confirmPasswordGroup");
   const errorMessage = document.getElementById("error-message");
 
+
   let isSignUp = false;
 
   toggleFormLink.addEventListener("click", (e) => {
@@ -29,23 +30,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
-    const confirmPassword = document
-      .getElementById("confirmPassword")
-      ?.value.trim();
+    const confirmPassword = document.getElementById("confirmPassword")?.value.trim();
+      const nameRegex = /^[A-Za-z ]{3,}$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
 
-    const usernameRegex = /^[A-Za-z]+$/;
-    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
-
-    if (!usernameRegex.test(username)) {
-      errorMessage.textContent = "Username must contain only letters.";
-      return;
-    }
-
-    if (!specialCharRegex.test(password)) {
-      errorMessage.textContent =
-        "Password must contain at least one special character.";
-      return;
-    }
+      if (!(nameRegex.test(username) || emailRegex.test(username))) {
+        errorMessage.textContent = "Enter a valid name or a valid email.";
+        return;
+      }
+      
+      // Validate password (must contain special character)
+      if (!specialCharRegex.test(password)) {
+        errorMessage.textContent = "Password must contain at least one special character.";
+        return;
+      }
 
     if (isSignUp) {
       if (!username || !password || !confirmPassword) {

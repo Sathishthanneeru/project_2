@@ -15,7 +15,6 @@
         box-sizing: border-box;
       }
 
-      
       body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f4;
@@ -24,7 +23,6 @@
         padding-top: 80px;
       }
 
-    
       header {
         background: linear-gradient(to right, #00c6ff, #0072ff);
         color: #fff;
@@ -99,7 +97,6 @@
         margin-right: 8px;
       }
 
-    
       .links {
         position: sticky;
         top: 70px;
@@ -126,7 +123,6 @@
         transform: scale(1.2);
         color: #0077cc;
       }
-
 
       section {
         margin: 100px 0 20px 0;
@@ -172,7 +168,6 @@
         color: #444;
       }
 
-
       footer {
         text-align: center;
         background-color: #333;
@@ -195,7 +190,6 @@
         }
       }
 
-   
       @media (max-width: 992px) {
         nav {
           flex-direction: column;
@@ -399,7 +393,10 @@
       document.querySelectorAll("a").forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
-          document.querySelector(this.getAttribute("href")).scrollIntoView({
+          const targetId = this.getAttribute("href").substring(1);
+          const targetElement = document.getElementById(targetId);
+          window.scrollTo({
+            top: targetElement.offsetTop - 190, // Adjust the offset here
             behavior: "smooth",
           });
         });
