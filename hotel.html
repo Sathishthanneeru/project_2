@@ -154,6 +154,22 @@
     .links a {
       text-decoration: none;
     }
+    @keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.room-card {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
   </style>
   <body>
     <nav class="navbar">
@@ -336,6 +352,12 @@
         .then((data) => {
           document.getElementById("header").innerHTML = data;
         });
+        window.onload = () => {
+  document.querySelectorAll('.room-card').forEach((card, index) => {
+    card.style.animationDelay = `${index * 0.1}s`;
+  });
+};
+
     </script>
   </body>
 </html>
