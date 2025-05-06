@@ -71,7 +71,7 @@
       }
 
       nav ul li a:hover {
-        color: #4caf50;
+        color: #0e1b0f;
       }
 
       /* Navigation Button */
@@ -403,25 +403,39 @@
       </div>
     </section>
     <script>
+      // Handle anchor link clicks
       document.querySelectorAll("a").forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetId = this.getAttribute("href").substring(1);
-          const targetElement = document.getElementById(targetId);
-          window.scrollTo({
-            top: targetElement.offsetTop - 190, // Adjust the offset here
-            behavior: "smooth",
-          });
+          const href = this.getAttribute("href");
+    
+          // Smooth scroll only for internal links
+          if (href && href.startsWith("#")) {
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 190, // Adjust the offset here
+                behavior: "smooth",
+              });
+            }
+          }
+          // External links (http/https) will navigate normally
         });
       });
+    
+      // Navigation to home
       function goHome() {
         window.location.href = "./homepage.html";
       }
+    
+      // Load header.html into #header
       fetch("header.html")
         .then((response) => response.text())
         .then((data) => {
           document.getElementById("header").innerHTML = data;
         });
     </script>
+    
   </body>
 </html>

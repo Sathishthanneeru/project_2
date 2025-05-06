@@ -192,7 +192,7 @@
         <h2>NON AC - Deluxe Room</h2>
         <p>Price: ₹1500</p>
         <p>Location: Charminar</p>
-        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+        <button onclick="addToCart('NON AC - Deluxe Room', 1500)">Add to Cart</button>
       </div>
       <div class="room-card">
         <img
@@ -202,7 +202,7 @@
         <h2>AC - Deluxe Room</h2>
         <p>Price: ₹1800</p>
         <p>Location: Golconda</p>
-        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+        <button onclick="addToCart('AC - Deluxe Room', 1800)">Add to Cart</button>
       </div>
       <div class="room-card">
         <img
@@ -212,7 +212,7 @@
         <h2>Premium AC - Deluxe Room</h2>
         <p>Price: ₹2200</p>
         <p>Location: Ramoji flim city</p>
-        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+        <button onclick="addToCart('Premium AC - Deluxe Room', 2200)">Add to Cart</button>
       </div>
       <div class="room-card">
         <img
@@ -222,7 +222,7 @@
         <h2>AC - Deluxe Room</h2>
         <p>Price: ₹1800</p>
         <p>Location: Banjara Hills</p>
-        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+        <button onclick="addToCart('AC - Deluxe Room', 1800)">Add to Cart</button>
       </div>
       <div class="room-card">
         <img
@@ -232,7 +232,7 @@
         <h2>NON AC - Deluxe Room</h2>
         <p>Price: ₹1200</p>
         <p>Location: Hussain Sagar</p>
-        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+        <button onclick="addToCart('NON AC - Deluxe Room', 1200)">Add to Cart</button>
       </div>
       <div class="room-card">
         <img
@@ -242,7 +242,7 @@
         <h2>NON AC - Room</h2>
         <p>Price: ₹1000</p>
         <p>Location: ORR</p>
-        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+        <button onclick="addToCart('NON AC - Room', 1000)">Add to Cart</button>
       </div>
       <div class="room-card">
         <img
@@ -252,7 +252,7 @@
         <h2>DoubleCart AC-Room</h2>
         <p>Price: ₹2800</p>
         <p>Location: Hitech city</p>
-        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+        <button onclick="addToCart('DoubleCart AC-Room', 2800)">Add to Cart</button>
       </div>
       <div class="room-card">
         <img
@@ -262,7 +262,7 @@
         <h2>Premium AC - Room</h2>
         <p>Price: ₹2400</p>
         <p>Location: Kukatpalli</p>
-        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+        <button onclick="addToCart('Premium AC - Room', 2400)">Add to Cart</button>
       </div>
       <div class="room-card">
         <img
@@ -272,7 +272,7 @@
         <h2>DoubleCart AC-Room</h2>
         <p>Price: ₹2600</p>
         <p>Location: KBHP</p>
-        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+        <button onclick="addToCart('DoubleCart AC-Room', 2600)">Add to Cart</button>
       </div>
       <div class="room-card">
         <img
@@ -282,7 +282,7 @@
         <h2>Cottage</h2>
         <p>Price: ₹2500</p>
         <p>Location: ameerpet</p>
-        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+        <button onclick="addToCart('Cottage', 2500)">Add to Cart</button>
       </div>
       <div class="room-card">
         <img
@@ -292,7 +292,7 @@
         <h2>Cottage</h2>
         <p>Price: ₹2900</p>
         <p>Location: Madhapur</p>
-        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+        <button onclick="addToCart('Cottage', 2900)">Add to Cart</button>
       </div>
       <div class="room-card">
         <img
@@ -302,7 +302,7 @@
         <h2>Cottage</h2>
         <p>Price: ₹2500</p>
         <p>Location: JNTU</p>
-        <button onclick="addToCart('Deluxe Room', 2500)">Add to Cart</button>
+        <button onclick="addToCart('Cottage', 2500)">Add to Cart</button>
       </div>
     </div>
 
@@ -317,6 +317,8 @@
         cart.push({ name, price });
         updateCartCount();
         updateCartDisplay();
+        alert(`${name} has been added to your cart`);
+        
       }
 
       function removeFromCart(index) {
