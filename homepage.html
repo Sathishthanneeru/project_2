@@ -408,6 +408,26 @@
       transform: scale(1.05);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     }
+    .message {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background-color: #2ecc71;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 2000;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+.message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
   </style>
 
   <body>
@@ -427,6 +447,8 @@
         <span></span>
       </div>
     </nav>
+    <div id="message" class="message"></div>
+
     <div class="cart-container" id="cart-container">
       <h3>Cart Items</h3>
       <ul id="cart-items"></ul>
@@ -799,16 +821,16 @@
           let productName = productCard.querySelector("h4").textContent.trim();
           let productPrice = Number(productCard.getAttribute("data-price"));
           if (isNaN(productPrice)) {
-            alert("Error: Invalid product price.");
-            return;
-          }
+      showMessage("Error: Invalid product price.");
+      return;
+    }
 
           let cartItem = document.createElement("li");
           cartItem.classList.add("cart-item");
           cartItem.innerHTML = `${productName} - ₹${productPrice} <button class='remove-btn'>Delete</button>`;
 
           cartItemsList.appendChild(cartItem);
-          alert("Item added to cart..!");
+          showMessage(`${productName} has been added to your cart!`);
 
           cartItems.push(cartItem);
           cartCount++;
@@ -867,6 +889,16 @@
         });
         noResults.style.display = matchCount === 0 ? "block" : "none";
       });
+      function showMessage(msg) {
+  const messageDiv = document.getElementById("message");
+  messageDiv.textContent = msg;
+  messageDiv.classList.add("show");
+
+  setTimeout(() => {
+    messageDiv.classList.remove("show");
+  }, 3000); // message disappears after 3 seconds
+}
+
     </script>
   </body>
 </html>

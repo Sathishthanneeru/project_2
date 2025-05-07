@@ -30,6 +30,10 @@
       position: relative;
     }
 
+    * {
+      box-sizing: border-box;
+    }
+
     .room-container {
       display: flex;
       flex-wrap: wrap;
@@ -43,22 +47,30 @@
       padding: 1rem;
       border-radius: 12px;
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-      width: 220px;
-      text-align: center;
+      width: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 420px;
+      animation: fadeInUp 0.8s ease forwards;
+      gap: 10px;
     }
 
     .room-card img {
       width: 100%;
-      height: 200px;
+      height: 180px;
+      object-fit: cover;
       border-radius: 8px;
       transition: transform 0.5s ease, box-shadow 0.5s ease;
     }
 
-    .room-card img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    .room-card h2,
+    .room-card p {
+      margin: 5px 0;
     }
+
     .room-card button {
+      margin-top: auto;
       background-color: #3498db;
       color: white;
       border: none;
@@ -155,19 +167,39 @@
       text-decoration: none;
     }
     @keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.room-card {
+    .room-card {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .message {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background-color: #2ecc71;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   opacity: 0;
-  animation: fadeInUp 0.8s ease forwards;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 2000;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+.message.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
   </style>
@@ -181,6 +213,8 @@
         <a href="./homepage.html" class="home-btn">HOME</a>
       </div>
     </nav>
+    <div id="message" class="message"></div>
+
     <div id="header"></div>
 
     <div class="room-container">
@@ -192,7 +226,9 @@
         <h2>NON AC - Deluxe Room</h2>
         <p>Price: ₹1500</p>
         <p>Location: Charminar</p>
-        <button onclick="addToCart('NON AC - Deluxe Room', 1500)">Add to Cart</button>
+        <button onclick="addToCart('NON AC - Deluxe Room', 1500)">
+          Add to Cart
+        </button>
       </div>
       <div class="room-card">
         <img
@@ -202,7 +238,9 @@
         <h2>AC - Deluxe Room</h2>
         <p>Price: ₹1800</p>
         <p>Location: Golconda</p>
-        <button onclick="addToCart('AC - Deluxe Room', 1800)">Add to Cart</button>
+        <button onclick="addToCart('AC - Deluxe Room', 1800)">
+          Add to Cart
+        </button>
       </div>
       <div class="room-card">
         <img
@@ -212,7 +250,9 @@
         <h2>Premium AC - Deluxe Room</h2>
         <p>Price: ₹2200</p>
         <p>Location: Ramoji flim city</p>
-        <button onclick="addToCart('Premium AC - Deluxe Room', 2200)">Add to Cart</button>
+        <button onclick="addToCart('Premium AC - Deluxe Room', 2200)">
+          Add to Cart
+        </button>
       </div>
       <div class="room-card">
         <img
@@ -222,7 +262,9 @@
         <h2>AC - Deluxe Room</h2>
         <p>Price: ₹1800</p>
         <p>Location: Banjara Hills</p>
-        <button onclick="addToCart('AC - Deluxe Room', 1800)">Add to Cart</button>
+        <button onclick="addToCart('AC - Deluxe Room', 1800)">
+          Add to Cart
+        </button>
       </div>
       <div class="room-card">
         <img
@@ -232,7 +274,9 @@
         <h2>NON AC - Deluxe Room</h2>
         <p>Price: ₹1200</p>
         <p>Location: Hussain Sagar</p>
-        <button onclick="addToCart('NON AC - Deluxe Room', 1200)">Add to Cart</button>
+        <button onclick="addToCart('NON AC - Deluxe Room', 1200)">
+          Add to Cart
+        </button>
       </div>
       <div class="room-card">
         <img
@@ -252,7 +296,9 @@
         <h2>DoubleCart AC-Room</h2>
         <p>Price: ₹2800</p>
         <p>Location: Hitech city</p>
-        <button onclick="addToCart('DoubleCart AC-Room', 2800)">Add to Cart</button>
+        <button onclick="addToCart('DoubleCart AC-Room', 2800)">
+          Add to Cart
+        </button>
       </div>
       <div class="room-card">
         <img
@@ -262,7 +308,9 @@
         <h2>Premium AC - Room</h2>
         <p>Price: ₹2400</p>
         <p>Location: Kukatpalli</p>
-        <button onclick="addToCart('Premium AC - Room', 2400)">Add to Cart</button>
+        <button onclick="addToCart('Premium AC - Room', 2400)">
+          Add to Cart
+        </button>
       </div>
       <div class="room-card">
         <img
@@ -272,7 +320,9 @@
         <h2>DoubleCart AC-Room</h2>
         <p>Price: ₹2600</p>
         <p>Location: KBHP</p>
-        <button onclick="addToCart('DoubleCart AC-Room', 2600)">Add to Cart</button>
+        <button onclick="addToCart('DoubleCart AC-Room', 2600)">
+          Add to Cart
+        </button>
       </div>
       <div class="room-card">
         <img
@@ -317,8 +367,7 @@
         cart.push({ name, price });
         updateCartCount();
         updateCartDisplay();
-        alert(`${name} has been added to your cart`);
-        
+        showMessage(`${name} has been added to your cart`);
       }
 
       function removeFromCart(index) {
@@ -354,11 +403,20 @@
         .then((data) => {
           document.getElementById("header").innerHTML = data;
         });
-        window.onload = () => {
-  document.querySelectorAll('.room-card').forEach((card, index) => {
-    card.style.animationDelay = `${index * 0.1}s`;
-  });
-};
+      window.onload = () => {
+        document.querySelectorAll(".room-card").forEach((card, index) => {
+          card.style.animationDelay = `${index * 0.1}s`;
+        });
+      };
+      function showMessage(msg) {
+  const messageDiv = document.getElementById("message");
+  messageDiv.textContent = msg;
+  messageDiv.classList.add("show");
+
+  setTimeout(() => {
+    messageDiv.classList.remove("show");
+  }, 3000); // message disappears after 3 seconds
+}
 
     </script>
   </body>
